@@ -1,0 +1,55 @@
+.folder-structure {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  margin: 40px;
+  padding: 10px;
+}
+
+.folder-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  align-content: center;
+}
+
+.folder-Breadcrumbs-Links {
+  text-decoration: none !important;
+  font-size: 18px !important;
+  color: #000000 !important;
+}
+
+.App {
+  box-sizing: border-box;
+  padding: auto;
+  margin: auto;
+  font-family: Arial, Helvetica, sans-serif;
+
+  h1 {
+    text-align: center;
+    font-size: 50px;
+    background: -webkit-linear-gradient(#d2ffff, #0694c6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.folder-tree {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px;
+}
+
+.create-btn {
+  color: #ffffff !important;
+  background-color: #383ed6 !important;
+  font-weight: 500 !important;
+}
