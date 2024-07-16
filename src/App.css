@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+  font-family: Poppins !important;
+}
 .folder-structure {
   display: flex;
   flex-direction: row;
@@ -5,8 +9,8 @@
   justify-content: flex-start;
   align-items: center;
   align-content: center;
-  margin: 40px;
-  padding: 10px;
+  padding: 20px;
+  margin: 20px 0px;
 }
 
 .folder-info {
@@ -20,36 +24,61 @@
 
 .folder-Breadcrumbs-Links {
   text-decoration: none !important;
-  font-size: 18px !important;
-  color: #000000 !important;
+  /* color: #101840 !important; */
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 20px !important;
+  line-height: 30px !important;
 }
 
 .App {
-  box-sizing: border-box;
   padding: auto;
   margin: auto;
-  font-family: Arial, Helvetica, sans-serif;
 
   h1 {
     text-align: center;
-    font-size: 50px;
-    background: -webkit-linear-gradient(#d2ffff, #0694c6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #0758e8 !important;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 64px;
   }
 }
-
+/* 
 .folder-tree {
+  margin-bottom: 20px;
+} */
+
+/* .folder-tree {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
   margin: 40px;
-}
+} */
 
 .create-btn {
   color: #ffffff !important;
-  background-color: #383ed6 !important;
-  font-weight: 500 !important;
+  background-color: #0758e8 !important;
+  font-weight: 400 !important;
+  border-radius: 6px !important;
+  border-color: #0758e8 !important;
+  padding: 7px 22px !important;
+}
+
+.cancle-btn {
+  font-weight: 400 !important;
+  border-radius: 6px !important;
+  border: 1px solid #0758e8 !important;
+  padding: 7px 22px !important;
+}
+
+.create-folder-popup {
+  margin: 20px !important;
+}
+
+.inner-child {
+  color: #0758e8;
+  font-size: 14px !important;
 }

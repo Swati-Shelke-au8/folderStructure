@@ -13,6 +13,8 @@ import {
   Typography,
   Breadcrumbs,
   Link,
+  Box,
+  Grid,
 } from "@mui/material";
 import FolderIcon from "@mui/icons-material/Folder";
 import {
@@ -29,6 +31,7 @@ const FolderTree = () => {
   const [openEditDialog, setOpenEditDialog] = useState(false);
   const [editFolderName, setEditFolderName] = useState("");
   const [editFolderColor, setEditFolderColor] = useState("");
+  const [editError, setEditError] = useState(false);
 
   const handleFolderClick = (folder) => {
     dispatch(setCurrentFolder(folder));
@@ -92,29 +95,46 @@ const FolderTree = () => {
   };
 
   const renderTree = (nodes) => (
-    <div className="folder-structure">
-      {nodes.map((node) => (
-        <div
-          className="folder-info"
-          key={node.id}
-          onContextMenu={(e) => handleContextMenu(e, node)}
-          onClick={() => handleFolderClick(node)}
-        >
-          <FolderIcon
-            style={{
-              fill: node.color,
-              verticalAlign: "middle",
-              height: "10vw",
-              width: "10vw",
-            }}
-          />
-          <Typography>{node.name}</Typography>
-          {node.children.length > 0 ? (
-            <Typography>{node.children.length} items</Typography>
-          ) : null}
-        </div>
-      ))}
-    </div>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2}>
+        <Grid item xs={1}></Grid>
+        <Grid item xs={11}>
+          <div className="folder-structure">
+            {nodes.map((node) => (
+              <div
+                className="folder-info"
+                key={node.id}
+                onContextMenu={(e) => handleContextMenu(e, node)}
+                onClick={() => handleFolderClick(node)}
+              >
+                <FolderIcon
+                  style={{
+                    fill: node.color,
+                    verticalAlign: "middle",
+                    height: "10vw",
+                    width: "10vw",
+                  }}
+                />
+                <Typography
+                  style={{
+                    height: "20px",
+                  }}
+                >
+                  {node.name}
+                </Typography>
+                <Typography style={{ height: "20px" }}>
+                  {node.children.length > 0 ? (
+                    <Typography className="inner-child">
+                      {node.children.length} items
+                    </Typography>
+                  ) : null}
+                </Typography>
+              </div>
+            ))}
+          </div>
+        </Grid>
+      </Grid>
+    </Box>
   );
 
   const rootFolder = currentFolder || { children: folders };
@@ -125,25 +145,34 @@ const FolderTree = () => {
   return (
     <div>
       <div className="folder-tree">
-        <Breadcrumbs separator=">">
-          <Link
-            className="folder-Breadcrumbs-Links"
-            color="inherit"
-            onClick={() => dispatch(setCurrentFolder(null))}
-          >
-            Home
-          </Link>
-          {folderPath.map((folder, index) => (
-            <Link
-              className="folder-Breadcrumbs-Links"
-              key={folder.id}
-              color="inherit"
-              onClick={() => dispatch(setCurrentFolder(folder))}
-            >
-              {folder.name}
-            </Link>
-          ))}
-        </Breadcrumbs>
+        <Box sx={{ flexGrow: 1, marginBottom: "20px" }}>
+          <Grid container spacing={2}>
+            <Grid item xs={1}></Grid>
+            <Grid item xs={11}>
+              <Breadcrumbs separator=">">
+                <Link
+                  className="folder-Breadcrumbs-Links"
+                  color="inherit"
+                  onClick={() => dispatch(setCurrentFolder(null))}
+                >
+                  Home
+                </Link>
+                {folderPath.map((folder, index) => (
+                  <Link
+                    className="folder-Breadcrumbs-Links"
+                    key={folder.id}
+                    color={
+                      index === folderPath.length - 1 ? "#0758e8" : "#101840"
+                    }
+                    onClick={() => dispatch(setCurrentFolder(folder))}
+                  >
+                    {folder.name}
+                  </Link>
+                ))}
+              </Breadcrumbs>
+            </Grid>
+          </Grid>
+        </Box>
         <CreateFolder parentFolder={currentFolder} />
       </div>
       {renderTree(rootFolder.children)}
@@ -170,7 +199,12 @@ const FolderTree = () => {
             type="text"
             fullWidth
             value={editFolderName}
-            onChange={(e) => setEditFolderName(e.target.value)}
+            onChange={(e) => {
+              setEditFolderName(e.target.value);
+              setEditError(!e.target.value.trim());
+            }}
+            error={editError}
+            helperText={editError ? "Folder Name is required" : ""}
           />
           <TextField
             margin="dense"
@@ -182,8 +216,12 @@ const FolderTree = () => {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseEditDialog}>Cancel</Button>
-          <Button onClick={handleEditFolder}>Save</Button>
+          <Button className="cancle-btn" onClick={handleCloseEditDialog}>
+            Cancel
+          </Button>
+          <Button className="create-btn" onClick={handleEditFolder}>
+            Save
+          </Button>
         </DialogActions>
       </Dialog>
     </div>
