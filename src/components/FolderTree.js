@@ -72,6 +72,7 @@ const FolderTree = () => {
     setOpenEditDialog(false);
   };
 
+  // eslint-disable-next-line no-unused-vars
   const findFolderById = (folders, id) => {
     for (const folder of folders) {
       if (folder.id === id) {
