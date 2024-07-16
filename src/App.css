@@ -24,7 +24,6 @@
 
 .folder-Breadcrumbs-Links {
   text-decoration: none !important;
-  /* color: #101840 !important; */
   font-style: normal !important;
   font-weight: 400 !important;
   font-size: 20px !important;
@@ -44,19 +43,6 @@
     line-height: 64px;
   }
 }
-/* 
-.folder-tree {
-  margin-bottom: 20px;
-} */
-
-/* .folder-tree {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
-  margin: 40px;
-} */
 
 .create-btn {
   color: #ffffff !important;
